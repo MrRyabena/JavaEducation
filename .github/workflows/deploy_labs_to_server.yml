@@ -2,6 +2,8 @@ name: Deploy Labs to Server
 
 on:
   push:
+    branches:
+      - main
     paths:
       - 'src/labs/**'
   workflow_dispatch:
