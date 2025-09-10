@@ -1,4 +1,3 @@
-package labs.lab_0;
 
 public class Hello {
     public static void main(String[] args) {
