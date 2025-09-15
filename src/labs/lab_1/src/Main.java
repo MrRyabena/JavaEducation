@@ -3,6 +3,28 @@ import java.util.Random;
 
 public class Main {
 
+    /**
+     * @param x  x[j]
+     * @param wi w[i]
+     * @return calculated value
+     */
+    private static float calculate(float x, long wi) {
+        return switch ((int) wi) {
+            case 19 -> (float) Math.pow(Math.pow(1 - Math.pow(x, 3), 3) + 0.5f, Math.cos(Math.cos(x)));
+            case 9, 11, 13 -> (float) Math.pow(Math.E, Math.cbrt(x)) + 1;
+            default -> (float) Math.log(Math.pow(Math.sin(Math.tan(Math.asin(3f / 4f * (x - 3) / 16))), 2));
+        };
+    }
+
+    private static void printArray(float[][] arr) {
+        for (var x : arr) {
+            for (var y : x) {
+                System.out.print(String.format(Locale.US, "%14.3f", y) + " ");
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
 
         // Initialization variables
@@ -12,33 +34,20 @@ public class Main {
         var random = new Random();
 
         // Fill arrays
-        for (int n = 19, i = 0; n >= 7; n -= 2, i++) w[i] = n;
-        for (var i = 0; i < 10; i++) x[i] = -11f + (5f + 11f) * random.nextFloat(); // random float in [-11;5]
+        for (int n = 19, i = 0; n >= 7; n -= 2, i++)
+            w[i] = n;
+        for (var i = 0; i < 10; i++)
+            x[i] = -11f + (5f + 11f) * random.nextFloat(); // random float in [-11;5]
 
         // Calculations and output
         for (var i = 0; i < 7; i++) {
             for (var j = 0; j < 10; j++) {
-                switch ((int)w[i]) {
-                    case 19:
-                        w_1[i][j] = (float) Math.pow(Math.pow(1 - Math.pow(x[j], 3), 3) + 0.5f, Math.cos(Math.cos(x[j])));
-                        break;
+                w_1[i][j] = calculate(x[j], w[i]);
 
-                    case 9:    // fallthrough
-                    case 11:   // fallthrough
-                    case 13:
-                        w_1[i][j] = (float) Math.pow(Math.E, Math.cbrt(x[j])) + 1;
-                        break;
-
-                    default:
-                        w_1[i][j] = (float) Math.log(Math.pow(Math.sin(Math.tan(Math.asin(3f / 4f * (x[j] - 3) / 16))), 2));
-                        break;
-                }
-
-                System.out.print(String.format(Locale.US, "%14.3f", w_1[i][j]) + " ");
             }
-
-            System.out.println();
         }
+
+        printArray(w_1);
     }
 
 }
