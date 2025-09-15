@@ -18,14 +18,14 @@ public class Main {
         // Calculations and output
         for (var i = 0; i < 7; i++) {
             for (var j = 0; j < 10; j++) {
-                switch (w[i]) {
-                    case 19l:
+                switch ((int)w[i]) {
+                    case 19:
                         w_1[i][j] = (float) Math.pow(Math.pow(1 - Math.pow(x[j], 3), 3) + 0.5f, Math.cos(Math.cos(x[j])));
                         break;
 
-                    case 9l:    // fallthrough
-                    case 11l:   // fallthrough
-                    case 13l:
+                    case 9:    // fallthrough
+                    case 11:   // fallthrough
+                    case 13:
                         w_1[i][j] = (float) Math.pow(Math.E, Math.cbrt(x[j])) + 1;
                         break;
 
