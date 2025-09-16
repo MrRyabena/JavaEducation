@@ -8,7 +8,7 @@ public class Main {
      * @param wi w[i]
      * @return calculated value
      */
-    private static float calculate(float x, long wi) {
+    private static float m_calculate(final float x, final long wi) {
         return switch ((int) wi) {
             case 19 -> (float) Math.pow(Math.pow(1 - Math.pow(x, 3), 3) + 0.5f, Math.cos(Math.cos(x)));
             case 9, 11, 13 -> (float) Math.pow(Math.E, Math.cbrt(x)) + 1;
@@ -16,7 +16,7 @@ public class Main {
         };
     }
 
-    private static void printArray(float[][] arr) {
+    private static void m_printArray(final float[][] arr) {
         for (var x : arr) {
             for (var y : x) {
                 System.out.print(String.format(Locale.US, "%14.3f", y) + " ");
@@ -42,12 +42,12 @@ public class Main {
         // Calculations and output
         for (var i = 0; i < 7; i++) {
             for (var j = 0; j < 10; j++) {
-                w_1[i][j] = calculate(x[j], w[i]);
+                w_1[i][j] = m_calculate(x[j], w[i]);
 
             }
         }
 
-        printArray(w_1);
+        m_printArray(w_1);
     }
 
 }
