@@ -3,28 +3,6 @@ import java.util.Random;
 
 public class Main {
 
-    /**
-     * @param x  x[j]
-     * @param wi w[i]
-     * @return calculated value
-     */
-    private static float m_calculate(final float x, final long wi) {
-        return switch ((int) wi) {
-            case 19 -> (float) Math.pow(Math.pow(1 - Math.pow(x, 3), 3) + 0.5f, Math.cos(Math.cos(x)));
-            case 9, 11, 13 -> (float) Math.pow(Math.E, Math.cbrt(x)) + 1;
-            default -> (float) Math.log(Math.pow(Math.sin(Math.tan(Math.asin(3f / 4f * (x - 3) / 16))), 2));
-        };
-    }
-
-    private static void m_printArray(final float[][] arr) {
-        for (var x : arr) {
-            for (var y : x) {
-                System.out.print(String.format(Locale.US, "%14.3f", y) + " ");
-            }
-            System.out.println();
-        }
-    }
-
     public static void main(String[] args) {
 
         // Initialization variables
@@ -48,6 +26,28 @@ public class Main {
         }
 
         m_printArray(w_1);
+    }
+
+    /**
+     * @param x  x[j]
+     * @param wi w[i]
+     * @return calculated value
+     */
+    private static float m_calculate(final float x, final long wi) {
+        return switch ((int) wi) {
+            case 19 -> (float) Math.pow(Math.pow(1 - Math.pow(x, 3), 3) + 0.5f, Math.cos(Math.cos(x)));
+            case 9, 11, 13 -> (float) Math.pow(Math.E, Math.cbrt(x)) + 1;
+            default -> (float) Math.log(Math.pow(Math.sin(Math.tan(Math.asin(3f / 4f * (x - 3) / 16))), 2));
+        };
+    }
+
+    private static void m_printArray(final float[][] arr) {
+        for (var x : arr) {
+            for (var y : x) {
+                System.out.print(String.format(Locale.US, "%14.3f", y) + " ");
+            }
+            System.out.println();
+        }
     }
 
 }
