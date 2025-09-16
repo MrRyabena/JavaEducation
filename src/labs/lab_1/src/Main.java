@@ -41,6 +41,9 @@ public class Main {
         };
     }
 
+    /**
+     * @param arr 2-d array for printing.
+     */
     private static void m_printArray(final float[][] arr) {
         for (var x : arr) {
             for (var y : x) {
