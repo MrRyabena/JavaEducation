@@ -9,6 +9,8 @@ cp main.jar build/
 rm Main.class
 rm Main.jar
 
+cd build
+
 echo "----------Run Main.class:----------"
 java Main
 echo "-----------------------------------"
