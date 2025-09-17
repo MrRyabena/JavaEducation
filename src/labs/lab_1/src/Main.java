@@ -61,7 +61,7 @@ public class Main {
     private static void m_printArray(final float[][] arr) {
         for (var line : arr) {
             for (var value : line) {
-                System.out.print(String.format(Locale.US, "%14.3f", value) + " ");
+                System.out.print(String.format(Locale.US, "%14.3f", value) + " | ");
             }
             System.out.println();
         }
