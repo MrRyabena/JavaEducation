@@ -1,15 +1,10 @@
 mkdir build
 
-javac Main.java
+cd src
+javac -d ../build/ Main.java
+
+cd ../build
 jar cfe main.jar Main *.class
-
-cp Main.class build/
-cp main.jar build/
-
-rm Main.class
-rm Main.jar
-
-cd build
 
 echo "----------Run Main.class:----------"
 java Main
