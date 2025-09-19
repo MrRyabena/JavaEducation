@@ -31,8 +31,10 @@ jobs:
           sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -p 2222 -o StrictHostKeyChecking=no s502499@se.ifmo.ru '
             for d in ~/labs/lab_*; do
               if [ -d "$d" ] && [ -f "$d/autobuild.sh" ]; then
+                echo "====================RUN IN DIR: $d===================="
                 chmod +x "$d/autobuild.sh"
                 (cd "$d" && ./autobuild.sh)
+                echo "==============================END=============================="
               fi
             done
           '
