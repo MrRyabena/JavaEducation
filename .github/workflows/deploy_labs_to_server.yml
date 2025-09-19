@@ -25,3 +25,14 @@ jobs:
         run: |
           sudo apt-get install -y sshpass
           sshpass -p "${{ secrets.SSH_PASSWORD }}" scp -P 2222 -r src/labs s502499@se.ifmo.ru:~
+
+      - name: Run autobuild.sh in each lab folder on server
+        run: |
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -p 2222 -o StrictHostKeyChecking=no s502499@se.ifmo.ru '
+            for d in ~/labs/lab_*; do
+              if [ -d "$d" ] && [ -f "$d/autobuild.sh" ]; then
+                chmod +x "$d/autobuild.sh"
+                (cd "$d" && ./autobuild.sh)
+              fi
+            done
+          '
