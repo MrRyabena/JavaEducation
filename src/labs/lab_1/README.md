@@ -1,9 +1,9 @@
 # Lab_1
 
-> ![NOTE]
+> [!NOTE]
 > Lab completed.
 
-> ![TIP]
+> [!TIP]
 > For run use `autobuild.sh` or `autobuild.bat`.
 
 ## Run
