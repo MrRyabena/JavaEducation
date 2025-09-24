@@ -60,7 +60,7 @@ public class Main {
     private static void m_printArray(final float[][] arr) {
         for (var line : arr) {
             for (var value : line) {
-                System.out.printf("%14.3f | ", value);
+                System.out.printf("%-14.3f | ", value);
             }
             System.out.println();
         }
