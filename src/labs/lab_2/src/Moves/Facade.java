@@ -22,9 +22,9 @@ public class Facade extends PhysicalMove {
      */
     @Override
     protected void applyOppEffects(Pokemon p) {
-        p.setMod(Stat.DAMAGE,
-                switch (p.getCondition()) {
-                    case Status.BURN, Status.POISON, Status.Paralyzed -> 2;
+        p.setMod(Stat.ATTACK,
+                switch (p.getCondition().toString()) {
+                    case "burned", "poisoned", "paralyzed" -> 2;
                     default -> 1;
                 });
     }
