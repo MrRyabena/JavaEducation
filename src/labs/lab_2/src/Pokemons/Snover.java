@@ -1,6 +1,7 @@
 package Pokemons;
 
 import ru.ifmo.se.pokemon.Pokemon;
+import ru.ifmo.se.pokemon.Type;
 
 
 public class Snover extends Pokemon {

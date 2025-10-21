@@ -2,6 +2,7 @@ package Pokemons;
 
 
 import ru.ifmo.se.pokemon.Pokemon;
+import ru.ifmo.se.pokemon.Type;
 
 public class Seedot extends Pokemon {
     public Seedot (String name, int level) {

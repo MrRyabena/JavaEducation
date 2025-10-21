@@ -2,6 +2,8 @@ package Pokemons;
 
 
 import ru.ifmo.se.pokemon.Pokemon;
+import ru.ifmo.se.pokemon.Type;
+import Moves.*;
 
 public class Mimikyu extends Pokemon {
     public Mimikyu(String name, int level) {
@@ -17,7 +19,7 @@ public class Mimikyu extends Pokemon {
          */
         this.setStats(55d, 90d, 80d, 50d, 105d, 96d);
         this.setType(Type.FAIRY);
-        // this.setMove(n=);
+        this.setMove(new ZingZap(), new WorkUp(), new Facade());
     }
     
 }
