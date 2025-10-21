@@ -8,6 +8,4 @@ copy main.mf ..\build\
 cd ../build
 jar -cfm Lab_2.jar main.mf *.class Pokemons/*.class Moves/*.class
 
-@REM java -cp .;Pokemon.jar Main
-
 java -jar Lab_2.jar
