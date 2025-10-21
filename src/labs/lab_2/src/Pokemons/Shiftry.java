@@ -1,5 +1,7 @@
 package Pokemons;
 
+import Moves.*;
+
 public class Shiftry extends Nuzleaf {
     public Shiftry(String name, int level) {
      super(name, level);
@@ -14,7 +16,8 @@ public class Shiftry extends Nuzleaf {
          */
         this.setStats(90d, 100d, 60d, 90d, 60d, 80d);
 
-        // this.setMove(n=);
+        // Add X-Scissor to legacy attacks (Energy Ball, Confide, Extrasensory)
+        this.addMove(new XScissor());
     }
     
 }

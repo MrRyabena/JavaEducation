@@ -3,6 +3,7 @@ package Pokemons;
 
 import ru.ifmo.se.pokemon.Pokemon;
 import ru.ifmo.se.pokemon.Type;
+import Moves.*;
 
 public class Seedot extends Pokemon {
     public Seedot (String name, int level) {
@@ -18,6 +19,8 @@ public class Seedot extends Pokemon {
          */
         this.setStats(40d, 40d, 50d, 30d, 30d, 30d);
         this.setType(Type.GRASS);
-        // this.setMove(n=);
+        
+
+        this.setMove(new EnergyBall(), new Confide());
     }
 }

@@ -2,6 +2,7 @@ package Pokemons;
 
 import ru.ifmo.se.pokemon.Pokemon;
 import ru.ifmo.se.pokemon.Type;
+import Moves.*;
 
 
 public class Snover extends Pokemon {
@@ -18,6 +19,8 @@ public class Snover extends Pokemon {
          */
         this.setStats(60d, 62d, 50d, 62d, 60d, 40d);
         this.setType(Type.ICE);
-        // this.setMove(n=);
+        
+
+        this.setMove(new Rest(), new IcyWind(), new EnergyBall());
     }
 }

@@ -24,7 +24,7 @@ public class Nuzzle extends PhysicalMove {
      */
     @Override
     protected void applyOppEffects(Pokemon p) {
-        p.addEffect(new Effect().condition(Status.PARALYZE););
+        p.addEffect(new Effect().condition(Status.PARALYZE));
     }
 
     @Override

@@ -2,6 +2,7 @@ package Pokemons;
 
 import ru.ifmo.se.pokemon.Pokemon;
 import ru.ifmo.se.pokemon.Type;
+import Moves.*;
 
 public class Nuzleaf extends Seedot {
     public Nuzleaf(String name, int level) {
@@ -17,6 +18,8 @@ public class Nuzleaf extends Seedot {
          */
         this.setStats(70d, 70d, 40d, 60d, 40d, 60d);
         this.addType(Type.DARK);
-        // this.setMove(n=);
+        
+        // Добавляем Extrasensory к унаследованным атакам (Energy Ball, Confide)
+        this.addMove(new Extrasensory());
     }
 }

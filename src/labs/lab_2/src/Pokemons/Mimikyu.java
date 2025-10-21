@@ -19,7 +19,7 @@ public class Mimikyu extends Pokemon {
          */
         this.setStats(55d, 90d, 80d, 50d, 105d, 96d);
         this.setType(Type.FAIRY);
-        this.setMove(new ZingZap(), new WorkUp(), new Facade());
+        this.setMove(new ZingZap(), new WorkUp(), new Facade(), new Nuzzle());
     }
     
 }
