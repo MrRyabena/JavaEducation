@@ -1,33 +1,34 @@
 package Moves;
-import ru.ifmo.se.pokemon.Move.*;
+
+import ru.ifmo.se.pokemon.*;
 
 public class WorkUp extends StatusMove {
 
     public WorkUp() {
-         /*
-         * power     -
-         * accuracy  -
-         * priority  0
-         * hits      1
+        /*
+         * power -
+         * accuracy -
+         * priority 0
+         * hits 1
          */
-        super(Type.NORMAL);
+        super(Type.NORMAL, 0, 0);
     }
 
     /*
-     * Work Up raises the user's Attack and Special Attack by one stage each.
+     * Rock Slide deals damage and has a 30% chance of causing the target to flinch
+     * (if the target has not yet moved).
      * 
-     * Stats can be raised to a maximum of +6 stages each.
+     * Pokémon with the ability Inner Focus or those behind a Substitute cannot be
+     * made to flinch.
      */
     @Override
     protected void applySelfEffects(Pokemon self) {
-        self.restore();
-        self.stat(Stat.ATTACK, 6);
-        self.stat(Stat.SPECIAL_ATTACK, 6);
+        self.addEffect(new Effect().stat(Stat.ATTACK, 1).stat(Stat.SPECIAL_ATTACK, 1));
     }
 
     @Override
     protected String describe() {
-        return "flinch";
+        return "uses Work Up";
     }
-    
+
 }

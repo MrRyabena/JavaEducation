@@ -1,8 +1,8 @@
 package Moves;
 
-import ru.ifmo.se.pokemon.Move.*;
+import ru.ifmo.se.pokemon.*;
 
-public class ZingZap extends PhisicalMove {
+public class ZingZap extends PhysicalMove {
 
     public ZingZap() {
         /*
@@ -18,16 +18,15 @@ public class ZingZap extends PhisicalMove {
      * May cause flinching. (30% chance)
      */
     @Override
-    protected void applySelfEffects(Pokemon self) {
-        Effect eff = new Effect().attack(0.3);
-        
-        eff.flinch(self);
+    protected void applyOppEffects(Pokemon p) {
+        Effect flinchEffect = new Effect().chance(0.3);
+        flinchEffect.flinch(p);
+        p.addEffect(flinchEffect);
     }
-
 
     @Override
     protected String describe() {
-        return "flinch";
+        return "uses Zing Zap";
     }
  }
  
