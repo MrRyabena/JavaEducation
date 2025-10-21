@@ -16,7 +16,7 @@ public class Abomasnow extends Snover {
          */
         this.setStats(90d, 92d, 75d, 92d, 85d, 60d);
         
-        // Added Rock Slide to legacy attacks (Rest, Icy Wind, Energy Ball)
+        // Add Rock Slide to legacy attacks (Rest, Icy Wind, Energy Ball)
         this.addMove(new RockSlide());
     }
     

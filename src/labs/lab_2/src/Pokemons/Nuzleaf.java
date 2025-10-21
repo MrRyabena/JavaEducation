@@ -19,7 +19,7 @@ public class Nuzleaf extends Seedot {
         this.setStats(70d, 70d, 40d, 60d, 40d, 60d);
         this.addType(Type.DARK);
         
-        // Добавляем Extrasensory к унаследованным атакам (Energy Ball, Confide)
+        // Add Extrasensory to legacy attacks (Energy Ball, Confide)
         this.addMove(new Extrasensory());
     }
 }
