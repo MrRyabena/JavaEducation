@@ -9,4 +9,4 @@ cp main.mf ../build/
 cd ../build
 jar -cfm Lab_2.jar main.mf *.class Pokemons/*.class Moves/*.class
 
-java -jar Lab_2.jar
+java -Xmx512m -XX:MaxMetaspaceSize=128m -jar Lab_2.jar
