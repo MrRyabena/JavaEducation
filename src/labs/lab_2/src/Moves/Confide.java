@@ -2,7 +2,7 @@ package Moves;
 
 import ru.ifmo.se.pokemon.*;
 
-public class Confide extends StatusMove {
+public final class Confide extends StatusMove {
 
     public Confide() {
         /*

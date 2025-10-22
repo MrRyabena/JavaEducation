@@ -2,7 +2,7 @@ package Pokemons;
 
 import Moves.*;
 
-public class Abomasnow extends Snover {
+public final class Abomasnow extends Snover {
     public Abomasnow(String name, int level) {
         super(name, level);
 

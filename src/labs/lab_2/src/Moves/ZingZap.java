@@ -2,7 +2,7 @@ package Moves;
 
 import ru.ifmo.se.pokemon.*;
 
-public class ZingZap extends PhysicalMove {
+public final class ZingZap extends PhysicalMove {
 
     public ZingZap() {
         /*

@@ -2,7 +2,7 @@ package Moves;
 
 import ru.ifmo.se.pokemon.*;
 
-public class RockSlide extends PhysicalMove {
+public final class RockSlide extends PhysicalMove {
 
     public RockSlide() {
         /*

@@ -2,7 +2,7 @@ package Moves;
 
 import ru.ifmo.se.pokemon.*;
 
-public class Extrasensory extends SpecialMove {
+public final class Extrasensory extends SpecialMove {
 
     public Extrasensory() {
         /*

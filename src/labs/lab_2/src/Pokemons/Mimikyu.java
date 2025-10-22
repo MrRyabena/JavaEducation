@@ -5,7 +5,7 @@ import ru.ifmo.se.pokemon.Pokemon;
 import ru.ifmo.se.pokemon.Type;
 import Moves.*;
 
-public class Mimikyu extends Pokemon {
+public final class Mimikyu extends Pokemon {
     public Mimikyu(String name, int level) {
      super(name, level);
 

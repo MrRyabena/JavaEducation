@@ -2,7 +2,7 @@ package Moves;
 
 import ru.ifmo.se.pokemon.*;
 
-public class EnergyBall extends SpecialMove {
+public final class EnergyBall extends SpecialMove {
 
     public EnergyBall() {
         /*

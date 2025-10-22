@@ -2,7 +2,7 @@ package Moves;
 
 import ru.ifmo.se.pokemon.*;
 
-public class Nuzzle extends PhysicalMove {
+public final class Nuzzle extends PhysicalMove {
 
     public Nuzzle() {
         /*

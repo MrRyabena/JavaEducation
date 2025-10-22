@@ -2,7 +2,7 @@ package Moves;
 
 import ru.ifmo.se.pokemon.*;
 
-public class IcyWind extends SpecialMove {
+public final class IcyWind extends SpecialMove {
 
     public IcyWind() {
         /*

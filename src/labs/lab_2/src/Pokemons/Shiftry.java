@@ -2,7 +2,7 @@ package Pokemons;
 
 import Moves.*;
 
-public class Shiftry extends Nuzleaf {
+public final class Shiftry extends Nuzleaf {
     public Shiftry(String name, int level) {
      super(name, level);
 

@@ -2,7 +2,7 @@ package Moves;
 
 import ru.ifmo.se.pokemon.*;
 
-public class Rest extends StatusMove {
+public final class Rest extends StatusMove {
 
     public Rest() {
         /*
