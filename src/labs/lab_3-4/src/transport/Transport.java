@@ -1,27 +1,66 @@
 package transport;
 
+import java.util.HashSet;
+import java.util.Random;
 
-public abstract class Transport {
-    TransportType type;
-    String model;
+public abstract class Transport extends core.Statusable implements core.Actionable, core.Explorable {
+    public TransportType type;
+    public String model;
+    public int mileage;
 
-    protected String status;
+    protected HashSet<characters.Character> passengers;
+    protected double reliability;
+    protected int resource;
 
-    Transport(TransportType set_type, String set_model) {
+    public Transport(
+            TransportType set_type, String set_model, int set_resource, double set_reliability) {
         type = set_type;
         model = set_model;
+        resource = set_resource;
+        reliability = set_reliability;
+        passengers = new HashSet<characters.Character>();
     }
 
-    abstract void start();
+    public Transport(TransportType set_type, String set_model, int set_resource) {
 
-    abstract void stop();
+        type = set_type;
+        model = set_model;
+        resource = set_resource;
 
-    abstract boolean breakdown();
+        var random = new Random();
+        reliability = random.nextDouble(0, 1.5);
 
-    String typeToString() {
-        return switch (type) {
-            case AUTOMOBILE -> "automobile";
-            case BALLOON -> "balloon";
-        };
+        passengers = new HashSet<characters.Character>();
+    }
+
+    public void addPassenger(characters.Character passenger) throws core.ScriptException {
+        if (!passengers.add(passenger))
+            throw new core.ScriptException("Passenger '" + passenger.name + "' already on board.");
+
+        m_setStatus("has new passenger: " + passenger.name);
+    }
+
+    public void removePassenger(characters.Character passenger) throws core.ScriptException {
+        if (!passengers.remove(passenger))
+            throw new core.ScriptException(
+                    "Passenger '" + passenger.name + "' not found on board.");
+
+        m_setStatus("drop off passenger: " + passenger.name);
+    }
+
+
+    
+    @Override
+    public void action() throws BreakException, InterruptedException {
+        if (reliability * resource < ++mileage) {
+            m_setStatus("is break down");
+            throw new BreakException("Break down!");
+        }
+        Thread.sleep(delay_timeout);
+    }
+
+    @Override
+    public String toString() {
+        return "[" + type + " \"" + model + "\"]: " + m_status;
     }
 }
