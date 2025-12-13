@@ -1,0 +1,121 @@
+
+@startuml NeznaikaModel
+
+
+abstract Character {
+	- name: String
+    - feeling: Feeling
+    - wish: Wish
+
+    + Character(name: String, mood: Mood, health: int)
+	+ action(): void
+    + toString(): String
+}
+
+enum Feeling {
+    NORMAL
+    FEAR
+    HAPPY
+    SAD
+}
+
+enum Wish {
+    FLY
+    EXPLORE
+    RELAX
+    TRAVEL
+}
+
+Feeling ..> Character : uses
+Wish ..> Character : uses
+
+class Dunno
+{
+    + speak(): String
+    + think(): String
+    + dream(): String
+    + see(): String    
+}
+Dunno <-- Character
+
+
+class Cog
+{
+    + invent(): String
+    + build(): String
+    + repair(): String
+    + improve(): String    
+}
+Cog <-- Character
+
+class Shpuntik
+{
+    + worry(): String
+    + explore(): String
+    + relax(): String
+    + travel(): String
+}
+Shpuntik <-- Character
+
+abstract Transport
+{
+    - model: String
+
+    + Transport(model: String)
+    + toString(): String
+}
+Transport --|> Automobile
+
+class Balloon
+{
+    - color: String
+    - capacity: int
+    - passengers: ArrayList<Character>
+
+    + Balloon(color: String, capacity: int)
+    + addPassenger(p: Character): void
+    + removePassenger(p: Character): void
+    + toString(): String
+}
+Balloon <|-- Transport
+
+class Automobile
+{
+    - model: String
+    - engine: Engine
+    - capacity: int
+    - grace: int
+    - passengers: ArrayList<Character>
+
+    + Automobile(model: String, fuelType: FuelType, enginePower: int)
+    + addPassenger(p: Character): void
+    + can_breakdown(): boolean
+    + removePassenger(p: Character): void
+    + start(): void throws EngineFailureException
+    + toString(): String
+}
+
+class Engine
+{
+    - power: int
+    - fuelType: FuelType
+    - isRunning: boolean
+    + Engine(power: int, fuelType: FuelType)
+    + start(): void throws EngineFailureException
+    + stop(): void
+    + toString(): String
+}
+
+enum FuelType {
+    WATER
+    CARBONATED_WATER
+}
+
+FuelType ..> Engine : uses
+Engine ..> Automobile : part of
+
+
+class Observer
+{
+    + nextStep(): void
+}
