@@ -36,17 +36,8 @@ public class Main {
             Smarty.setFeeling(Feeling.FEAR);
             Smarty.boardTransport(balloon);
 
-            try {
-                balloon.start();
-                balloon.action();
-                Smarty.setFeeling(Feeling.HAPPY);
-                Dunno.setFeeling(Feeling.FEAR);
-                balloon.action();
-                balloon.stop();
-            } catch (BreakException e) {
-                System.err.println(e.toString());
-            }
-
+            Smarty.driveTransport(balloon, 8);
+            Dunno.setFeeling(Feeling.FEAR);
             Dunno.leaveTransport(balloon);
             Smarty.leaveTransport(balloon);
 
@@ -58,17 +49,8 @@ public class Main {
             Dunno.setWish(Wish.DRIVE);
             Dunno.boardTransport(car);
 
-            try {
+            Dunno.driveTransport(car, 50);
 
-                car.start();
-                car.action();
-                Dunno.setFeeling(Feeling.EXCITED);
-                while (true) {
-                    car.action();
-                }
-            } catch (transport.BreakException e) {
-                car = null;
-            }
             Dunno.setFeeling(Feeling.SAD);
             Smarty.setFeeling(Feeling.SAD);
 
@@ -78,19 +60,15 @@ public class Main {
             Dowel.boardTransport(car2);
             Screw.boardTransport(car2);
 
-            try {
-                car2.start();
-                car2.action();
-                Dunno.setFeeling(Feeling.EXCITED);
-                while (true) {
-                    car2.action();
-                }
-            } catch (transport.BreakException e) {
-                car2 = null;
-            }
+            Dowel.driveTransport(car2, 8);
+
+            Dunno.see(car2);
+
+            car2.compareTo(car);
 
         } catch (core.ScriptException e) {
             System.err.println(e.toString());
+
         } catch (InterruptedException e) {
             System.err.println("Script interrupted: " + e.toString());
         }
