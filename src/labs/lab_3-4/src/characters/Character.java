@@ -24,6 +24,15 @@ public abstract class Character extends core.Statusable implements Comparable<Ch
         tr.addPassenger(this);
     }
 
+    public void leaveTransport(transport.Transport tr) throws core.ScriptException {
+        m_setStatus("leaving transport: " + tr.type + " " + tr.model);
+        tr.removePassenger(this);
+    }
+
+    public void see(core.Explorable obj) {
+        m_setStatus("sees: " + obj.explore());
+    }
+
     @Override
     public int compareTo(Character other) {
         return name.compareTo(other.name);
