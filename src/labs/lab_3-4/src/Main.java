@@ -19,10 +19,10 @@ public class Main {
             Dunno.onStatusChange(callback);
             var Smarty = new Smarty();
             Smarty.onStatusChange(callback);
-            var Dowel = new Dowel();
-            Dowel.onStatusChange(callback);
             var Screw = new Screw();
             Screw.onStatusChange(callback);
+            var Dowel = new Dowel();
+            Dowel.onStatusChange(callback);
 
             Dunno.setWish(Wish.TRAVEL);
 
@@ -60,7 +60,7 @@ public class Main {
             Dowel.boardTransport(car2);
             Screw.boardTransport(car2);
 
-            Dowel.driveTransport(car2, 8);
+            Screw.driveTransport(car2, 8);
 
             Dunno.see(car2);
 
