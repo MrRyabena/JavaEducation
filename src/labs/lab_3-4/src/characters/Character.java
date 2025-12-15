@@ -1,7 +1,12 @@
 package characters;
 
+import core.ScriptException;
+
+import transport.BreakException;
+import transport.Transport;
+
 public abstract class Character extends core.Statusable implements Comparable<Character> {
-    public String name;
+    public final String name;
     Feeling feeling;
     Wish wish;
 
@@ -19,14 +24,47 @@ public abstract class Character extends core.Statusable implements Comparable<Ch
         m_setStatus("wishing " + wish.toString().toLowerCase());
     }
 
-    public void boardTransport(transport.Transport tr) throws core.ScriptException {
+    public void boardTransport(Transport tr) throws core.ScriptException {
         m_setStatus("set to transport: " + tr.type + " " + tr.getParameters().model());
         tr.addPassenger(this);
     }
 
-    public void leaveTransport(transport.Transport tr) throws core.ScriptException {
+    public void leaveTransport(Transport tr) throws core.ScriptException {
         m_setStatus("leaving transport: " + tr.type + " " + tr.getParameters().model());
         tr.removePassenger(this);
+    }
+
+    public void driveTransport(Transport tr, final int distance)
+            throws core.ScriptException, InterruptedException {
+        if (!tr.isPassenger(this)) {
+            throw new ScriptException(
+                    "The character "
+                            + name
+                            + "can't drive transport "
+                            + tr.getCaption()
+                            + ", because he is't a passenger.");
+        }
+
+        try {
+            tr.start();
+
+            for (int i = 0; i < distance; i++) tr.action();
+            tr.stop();
+            m_setStatus(
+                    "successfully drove the "
+                            + tr.getCaption()
+                            + " for the "
+                            + distance
+                            + " miles");
+
+        } catch (BreakException e) {
+            m_setStatus(
+                    "Did not drove the "
+                            + tr.getCaption()
+                            + " to its destination, because "
+                            + e.toString());
+            setFeeling(Feeling.SAD);
+        }
     }
 
     public void see(core.Explorable obj) {
