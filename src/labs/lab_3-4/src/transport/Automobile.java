@@ -11,6 +11,7 @@ public class Automobile extends Transport {
 
     @Override
     public void start() {
+        m_engine.start();
         m_setStatus("starting");
     }
 
@@ -22,6 +23,8 @@ public class Automobile extends Transport {
 
     @Override
     public void stop() {
+        m_engine.stop();
         m_setStatus("stop");
     }
+
 }
