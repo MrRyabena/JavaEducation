@@ -1,14 +1,41 @@
 
 @startuml NeznaikaModel
 
+abstract class Statusable {
+    - m_status: String
+    - m_on_status_change: Consumer<Statusable>
+
+    + onStatusChange(callback: Consumer<Statusable>): Statusable
+    # m_setStatus(new_status: String): void
+}
+
+interface Actionable {
+    + start(): void
+    + stop(): void
+    + action(): void
+}
+
+interface Explorable {
+    + explore(): String
+}
+
+interface Comparable<T> {
+    + compareTo(other: T): int
+}
 
 abstract Character {
-	- name: String
+    + name: String
     - feeling: Feeling
     - wish: Wish
 
-    + Character(name: String, mood: Mood, health: int)
-	+ action(): void
+    + Character(name: String)
+    + setFeeling(feeling: Feeling): void
+    + setWish(wish: Wish): void
+    + boardTransport(tr: Transport): void
+    + leaveTransport(tr: Transport): void
+    + driveTransport(tr: Transport, distance: int): void
+    + see(obj: Explorable): void
+    + compareTo(other: Character): int
     + toString(): String
 }
 
@@ -17,6 +44,7 @@ enum Feeling {
     FEAR
     HAPPY
     SAD
+    EXCITED
 }
 
 enum Wish {
@@ -24,98 +52,170 @@ enum Wish {
     EXPLORE
     RELAX
     TRAVEL
+    INVENT
+    DRIVE
 }
 
-Feeling ..> Character : uses
-Wish ..> Character : uses
-
-class Dunno
-{
-    + speak(): String
-    + think(): String
-    + dream(): String
-    + see(): String    
+class Dunno {
+    + Dunno()
 }
-Dunno <-- Character
 
+class Smarty {
+    - m_automobile_counter: int
+    - m_quality: double
 
-class Cog
-{
-    + invent(): String
-    + build(): String
-    + repair(): String
-    + improve(): String    
+    + Smarty()
+    + inventTransport(type: TransportTypes): Transport
 }
-Cog <-- Character
 
-class Shpuntik
-{
-    + worry(): String
+class Dowel {
+    + Dowel()
+}
+
+class Screw {
+    + Screw()
+}
+
+enum TransportTypes {
+    AUTOMOBILE
+    BALLOON
+}
+
+abstract Transport {
+    + type: TransportTypes
+    - m_parameters: Parameters
+    - m_engine: Engine
+    - m_mileage: int
+    - m_passengers: HashSet<Character>
+    - m_reliability: double
+
+    + Transport(type: TransportTypes, params: Parameters, engine: Engine, reliability: double)
+    + Transport(type: TransportTypes, params: Parameters, engine: Engine)
+    + getCaption(): String
+    + getParameters(): Parameters
+    + getEngineParameters(): Engine.Parameters
+    + getEngineType(): EngineTypes
+    + getMileage(): int
+    + addPassenger(passenger: Character): void
+    + removePassenger(passenger: Character): void
+    + isPassenger(passenger: Character): boolean
     + explore(): String
-    + relax(): String
-    + travel(): String
-}
-Shpuntik <-- Character
-
-abstract Transport
-{
-    - model: String
-
-    + Transport(model: String)
-    + toString(): String
-}
-Transport --|> Automobile
-
-class Balloon
-{
-    - color: String
-    - capacity: int
-    - passengers: ArrayList<Character>
-
-    + Balloon(color: String, capacity: int)
-    + addPassenger(p: Character): void
-    + removePassenger(p: Character): void
-    + toString(): String
-}
-Balloon <|-- Transport
-
-class Automobile
-{
-    - model: String
-    - engine: Engine
-    - capacity: int
-    - grace: int
-    - passengers: ArrayList<Character>
-
-    + Automobile(model: String, fuelType: FuelType, enginePower: int)
-    + addPassenger(p: Character): void
-    + can_breakdown(): boolean
-    + removePassenger(p: Character): void
-    + start(): void throws EngineFailureException
+    + action(): void
+    + compareTo(other: Transport): int
     + toString(): String
 }
 
-class Engine
-{
-    - power: int
-    - fuelType: FuelType
-    - isRunning: boolean
-    + Engine(power: int, fuelType: FuelType)
-    + start(): void throws EngineFailureException
+struct Parameters {
+    + model: String
+    + capacity: int
+    + grace: int
+    + resource: int
+}
+
+class Balloon {
+    + Balloon(params: Parameters, engine: Engine, reliability: double)
+    + Balloon(params: Parameters, engine: Engine)
+    + start(): void
+    + action(): void
     + stop(): void
+}
+
+class Automobile {
+    + Automobile(params: Parameters, engine: Engine, reliability: double)
+    + Automobile(params: Parameters, engine: Engine)
+    + start(): void
+    + action(): void
+    + stop(): void
+}
+
+enum EngineTypes {
+    BURNER
+    WATER_ENGINE
+    MODIFIED_WATER_ENGINE
+}
+
+enum Fuel {
+    WATER
+    HEATED_WATER
+    GAS
+}
+
+abstract Engine {
+    + type: EngineTypes
+    + parameters: Parameters
+    - m_state: boolean
+
+    + Engine(type: EngineTypes, params: Parameters)
+    + start(): void
+    + stop(): void
+    + isWorking(): boolean
     + toString(): String
 }
 
-enum FuelType {
-    WATER
-    CARBONATED_WATER
+struct Engine_Parameters {
+    + power: int
+    + fuel: Fuel
 }
 
-FuelType ..> Engine : uses
-Engine ..> Automobile : part of
-
-
-class Observer
-{
-    + nextStep(): void
+class Burner {
+    + Burner(params: Parameters)
+    + start(): void
+    + stop(): void
 }
+
+class WaterEngine {
+    + WaterEngine(params: Parameters)
+    + WaterEngine(type: EngineTypes, params: Parameters)
+    + start(): void
+    + stop(): void
+}
+
+class ModifiedWaterEngine {
+    + ModifiedWaterEngine(params: Parameters)
+}
+
+class ScriptException {
+    + ScriptException()
+    + ScriptException(message: String)
+    + ScriptException(message: String, cause: Throwable)
+}
+
+class BreakException {
+    + BreakException()
+    + BreakException(message: String)
+    + BreakException(message: String, cause: Throwable)
+}
+
+Character --|> Statusable
+Character ..|> Comparable
+Character --> Feeling
+Character --> Wish
+Character --> Transport
+
+Dunno --|> Character
+Smarty --|> Character
+Dowel --|> Character
+Screw --|> Character
+
+Transport --|> Statusable
+Transport ..|> Actionable
+Transport ..|> Explorable
+Transport ..|> Comparable
+Transport --> TransportTypes
+Transport --> Parameters
+Transport --> Engine
+Transport --> Character
+
+Balloon --|> Transport
+Automobile --|> Transport
+
+Engine --|> Statusable
+Engine --> EngineTypes
+Engine --> Engine_Parameters
+Engine --> Fuel
+
+Burner --|> Engine
+WaterEngine --|> Engine
+ModifiedWaterEngine --|> WaterEngine
+
+@enduml
