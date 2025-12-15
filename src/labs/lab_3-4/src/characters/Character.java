@@ -20,12 +20,12 @@ public abstract class Character extends core.Statusable implements Comparable<Ch
     }
 
     public void boardTransport(transport.Transport tr) throws core.ScriptException {
-        m_setStatus("set to transport: " + tr.type + " " + tr.model);
+        m_setStatus("set to transport: " + tr.type + " " + tr.getParameters().model());
         tr.addPassenger(this);
     }
 
     public void leaveTransport(transport.Transport tr) throws core.ScriptException {
-        m_setStatus("leaving transport: " + tr.type + " " + tr.model);
+        m_setStatus("leaving transport: " + tr.type + " " + tr.getParameters().model());
         tr.removePassenger(this);
     }
 
