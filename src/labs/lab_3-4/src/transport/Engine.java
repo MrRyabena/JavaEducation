@@ -3,11 +3,11 @@ package transport;
 public abstract class Engine extends core.Statusable {
     public static enum Fuel {
         WATER,
-        CARBONATED_WATER,
+        HEATED_WATER,
         GAS
     }
 
-    public static record Parameters(int power, Fuel fuel_type) {}
+    public static record Parameters(int power, Fuel fuel) {}
 
     public final EngineTypes type;
     public final Parameters parameters;
@@ -33,6 +33,6 @@ public abstract class Engine extends core.Statusable {
     }
 
     public String toString() {
-        return type.toString() + m_status;
+        return type.toString() + " " + m_status;
     }
 }
