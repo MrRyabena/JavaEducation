@@ -19,10 +19,14 @@ public class Main {
             Dunno.onStatusChange(callback);
             var Smarty = new Smarty();
             Smarty.onStatusChange(callback);
+            var Dowel = new Dowel();
+            Dowel.onStatusChange(callback);
+            var Screw = new Screw();
+            Screw.onStatusChange(callback);
 
             Dunno.setWish(Wish.TRAVEL);
 
-            var balloon = Smarty.inventTransport(TransportType.BALLOON);
+            var balloon = Smarty.inventTransport(TransportTypes.BALLOON);
             balloon.onStatusChange(callback);
 
             Dunno.see(balloon);
@@ -40,16 +44,50 @@ public class Main {
                 balloon.action();
                 balloon.stop();
             } catch (BreakException e) {
-                e.toString();
+                System.err.println(e.toString());
             }
 
             Dunno.leaveTransport(balloon);
             Smarty.leaveTransport(balloon);
-            
+
             Smarty.setWish(Wish.INVENT);
-            Smarty.setFeeling(Feeling.HAPPY);
+            Automobile car = (Automobile) Smarty.inventTransport(TransportTypes.AUTOMOBILE);
+            car.onStatusChange(callback);
 
+            Dunno.see(car);
+            Dunno.setWish(Wish.DRIVE);
+            Dunno.boardTransport(car);
 
+            try {
+
+                car.start();
+                car.action();
+                Dunno.setFeeling(Feeling.EXCITED);
+                while (true) {
+                    car.action();
+                }
+            } catch (transport.BreakException e) {
+                car = null;
+            }
+            Dunno.setFeeling(Feeling.SAD);
+            Smarty.setFeeling(Feeling.SAD);
+
+            var car2 = Smarty.inventTransport(TransportTypes.AUTOMOBILE);
+            car2.onStatusChange(callback);
+
+            Dowel.boardTransport(car2);
+            Screw.boardTransport(car2);
+
+            try {
+                car2.start();
+                car2.action();
+                Dunno.setFeeling(Feeling.EXCITED);
+                while (true) {
+                    car2.action();
+                }
+            } catch (transport.BreakException e) {
+                car2 = null;
+            }
 
         } catch (core.ScriptException e) {
             System.err.println(e.toString());
