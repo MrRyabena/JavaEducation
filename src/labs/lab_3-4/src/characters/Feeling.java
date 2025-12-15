@@ -5,4 +5,5 @@ public enum Feeling {
     FEAR,
     HAPPY,
     SAD,
+    EXCITED
 }

@@ -6,4 +6,5 @@ public enum Wish {
     RELAX,
     TRAVEL,
     INVENT,
+    DRIVE
 }
