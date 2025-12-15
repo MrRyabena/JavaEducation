@@ -1,12 +1,12 @@
 package transport;
 
 public class Automobile extends Transport {
-    public Automobile(String set_model, int set_resource, double set_reliability) {
-        super(TransportType.AUTOMOBILE, set_model, set_resource, set_reliability);
+    public Automobile(Parameters params, Engine engine, double reliability) {
+        super(TransportTypes.AUTOMOBILE, params, engine, reliability);
     }
 
-    public Automobile(String set_model, int set_resource) {
-        super(TransportType.AUTOMOBILE, set_model, set_resource);
+    public Automobile(Parameters params, Engine engine) {
+        super(TransportTypes.AUTOMOBILE, params, engine);
     }
 
     @Override

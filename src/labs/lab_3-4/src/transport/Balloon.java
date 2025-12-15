@@ -1,15 +1,17 @@
 package transport;
 
 public class Balloon extends Transport {
-    public Balloon(String set_model, int set_resource, double set_reliability) {
-        super(TransportType.BALLOON, set_model, set_resource, set_reliability);
+    public Balloon(Parameters params, Engine engine, double reliability) {
+        super(TransportTypes.BALLOON, params, engine, reliability);
     }
-    
+
+    public Balloon(Parameters params, Engine engine) {
+        super(TransportTypes.BALLOON, params, engine);
+    }
+
     @Override
-    public void start()
-    {
+    public void start() {
         m_setStatus("filling with hot air");
-        
     }
 
     @Override
@@ -19,8 +21,7 @@ public class Balloon extends Transport {
     }
 
     @Override
-    public void stop()
-    {
+    public void stop() {
         m_setStatus("landing");
     }
 }
