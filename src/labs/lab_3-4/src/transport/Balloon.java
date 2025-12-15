@@ -8,6 +8,7 @@ public class Balloon extends Transport {
     @Override
     public void start()
     {
+        m_setStatus("filling with hot air");
         
     }
 
@@ -20,6 +21,6 @@ public class Balloon extends Transport {
     @Override
     public void stop()
     {
-
+        m_setStatus("landing");
     }
 }
