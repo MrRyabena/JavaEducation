@@ -1,8 +1,9 @@
 package characters;
 
-enum Wish {
+public enum Wish {
     FLY,
     EXPLORE,
     RELAX,
-    TRAVEL
+    TRAVEL,
+    INVENT,
 }

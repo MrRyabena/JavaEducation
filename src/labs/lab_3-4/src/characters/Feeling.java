@@ -1,6 +1,6 @@
 package characters;
 
-enum Feeling {
+public enum Feeling {
     NORMAL,
     FEAR,
     HAPPY,
