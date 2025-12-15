@@ -1,7 +1,7 @@
 mkdir -p build
 
 cd src
-javac -d "../build/" Main.java characters/*.java transport/*.java
+javac -d "../build/" Main.java core/*.java characters/*.java transport/*.java
 cp main.mf ../build/
 
 cd ../build
