@@ -3,7 +3,8 @@ package transport;
 import java.util.HashSet;
 import java.util.Random;
 
-public abstract class Transport extends core.Statusable implements core.Actionable, core.Explorable {
+public abstract class Transport extends core.Statusable
+        implements core.Actionable, core.Explorable {
     public TransportType type;
     public String model;
     public int mileage;
@@ -28,7 +29,7 @@ public abstract class Transport extends core.Statusable implements core.Actionab
         resource = set_resource;
 
         var random = new Random();
-        reliability = random.nextDouble(0, 1.5);
+        reliability = random.nextDouble(0.5, 1.5);
 
         passengers = new HashSet<characters.Character>();
     }
@@ -48,8 +49,19 @@ public abstract class Transport extends core.Statusable implements core.Actionab
         m_setStatus("drop off passenger: " + passenger.name);
     }
 
+    @Override
+    public String explore() {
+        StringBuilder result = new StringBuilder(type.toString());
+        result.append(" " + model);
+        result.append(". The mileage is " + mileage);
+        result.append(". There are " + passengers.size() + " passengers on board" + (passengers.size() > 0 ? ": " : ". "));
 
-    
+        for (var p : passengers) {
+            result.append(p.name + " ");
+        }
+        return result.toString();
+    }
+
     @Override
     public void action() throws BreakException, InterruptedException {
         if (reliability * resource < ++mileage) {
