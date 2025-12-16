@@ -1,5 +1,5 @@
 
-@startuml NeznaikaModel
+@startuml ObjectModel
 
 abstract class Statusable {
     - m_status: String
