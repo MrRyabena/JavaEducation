@@ -57,8 +57,8 @@ public class Main {
             var car2 = Smarty.inventTransport(TransportTypes.AUTOMOBILE);
             car2.onStatusChange(callback);
 
-            Dowel.boardTransport(car2);
             Screw.boardTransport(car2);
+            Dowel.boardTransport(car2);
 
             Screw.driveTransport(car2, 8);
 
