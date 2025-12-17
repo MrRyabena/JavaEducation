@@ -4,16 +4,15 @@ import transport.*;
 public class Main {
     public static void main(String[] args) {
         try {
-            java.util.function.Consumer<core.Statusable> callback =
-                    (obj) -> {
-                        System.out.println(obj.toString());
+            java.util.function.Consumer<core.Statusable> callback = (obj) -> {
+                System.out.println(obj.toString());
 
-                        try {
-                            Thread.sleep(core.Actionable.delay_timeout);
-                        } catch (InterruptedException e) {
-                            System.err.println("Script interrupted: " + e.toString());
-                        }
-                    };
+                try {
+                    Thread.sleep(core.Actionable.delay_timeout);
+                } catch (InterruptedException e) {
+                    System.err.println("Script interrupted: " + e.toString());
+                }
+            };
 
             var Dunno = new Dunno();
             Dunno.onStatusChange(callback);
@@ -51,7 +50,6 @@ public class Main {
 
             Dunno.driveTransport(car, 50);
 
-            Dunno.setFeeling(Feeling.SAD);
             Smarty.setFeeling(Feeling.SAD);
 
             var car2 = Smarty.inventTransport(TransportTypes.AUTOMOBILE);
@@ -67,6 +65,7 @@ public class Main {
             car2.compareTo(car);
 
         } catch (core.ScriptException e) {
+            System.err.println("Script error");
             System.err.println(e.toString());
 
         } catch (InterruptedException e) {
