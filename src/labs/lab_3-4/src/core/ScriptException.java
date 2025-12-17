@@ -12,4 +12,9 @@ public class ScriptException extends RuntimeException {
     public ScriptException(String message, Throwable cause) {
         super(message, cause);
     }
+
+    @Override
+    public String getMessage() {
+        return "Logic error in script: " + super.getMessage();
+    }
 }

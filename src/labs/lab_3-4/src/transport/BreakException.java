@@ -12,4 +12,9 @@ public class BreakException extends Exception {
     public BreakException(String message, Throwable cause) {
         super(message, cause);
     }
+
+    @Override
+    public String getMessage() {
+        return "Transport breakdown: " + super.getMessage();
+    }   
 }
