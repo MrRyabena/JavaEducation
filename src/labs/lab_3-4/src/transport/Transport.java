@@ -8,7 +8,8 @@ public abstract class Transport extends core.Statusable
 
     public final TransportTypes type;
 
-    public static record Parameters(String model, int capacity, int grace, int resource) {}
+    public static record Parameters(String model, int capacity, int grace, int resource) {
+    }
 
     protected final Parameters m_parameters;
     protected Engine m_engine;
@@ -91,21 +92,18 @@ public abstract class Transport extends core.Statusable
 
     @Override
     public String explore() {
-        StringBuilder result = new StringBuilder(type.toString());
-        result.append(" " + m_parameters.model());
-        result.append(". The Capacity is " + m_parameters.capacity());
-        result.append(". The grace is " + m_parameters.grace());
-        result.append(". The m_engine power is " + m_engine.parameters.power());
-        result.append(" and it works on " + m_engine.parameters.fuel());
-        result.append(". The mileage is " + m_mileage);
-        result.append(
-                ". There are "
-                        + m_passengers.size()
-                        + " m_passengers on board"
-                        + (m_passengers.size() > 0 ? ": " : ". "));
+        StringBuilder result = new StringBuilder(getCaption());
+        result.append(". The Capacity is ").append(m_parameters.capacity());
+        result.append(". The grace is ").append(m_parameters.grace());
+        result.append(". The engine power is ").append(m_engine.parameters.power());
+        result.append(" and it works on ").append(m_engine.parameters.fuel());
+        result.append(". The mileage is ").append(m_mileage);
+        result.append(". There are ").append(m_passengers.size())
+                .append(" passengers on board")
+                .append(m_passengers.size() > 0 ? ": " : ". ");
 
         for (var p : m_passengers) {
-            result.append(p.name + " ");
+            result.append(p.name + ", ");
         }
         return result.toString();
     }
@@ -123,22 +121,12 @@ public abstract class Transport extends core.Statusable
     public int compareTo(Transport other) {
         var o_par = other.getParameters();
         var comp = new StringBuilder("Compare " + getCaption() + " and " + other.getCaption());
-        comp.append("capacity: " + m_parameters.capacity() + "/" + o_par.capacity() + "\n");
-        comp.append("grace:    " + m_parameters.grace() + "/" + o_par.grace() + "\n");
-        comp.append("resource: " + m_parameters.resource() + "/" + o_par.resource() + "\n");
-        comp.append("Engine:   " + m_engine.type + "/" + other.getEngineType() + "\n");
-        comp.append(
-                "power:    "
-                        + m_engine.parameters.power()
-                        + "/"
-                        + other.getEngineParameters().power()
-                        + "\n");
-        comp.append(
-                "fuel:     "
-                        + m_engine.parameters.fuel()
-                        + "/"
-                        + other.getEngineParameters().fuel()
-                        + "\n");
+        comp.append("\ncapacity: ").append(m_parameters.capacity()).append("/").append(o_par.capacity()).append("\n");
+        comp.append("grace:    ").append(m_parameters.grace()).append("/").append(o_par.grace()).append("\n");
+        comp.append("resource: ").append(m_parameters.resource()).append("/").append(o_par.resource()).append("\n");
+        comp.append("Engine:   ").append(m_engine.type).append("/").append(other.getEngineType()).append("\n");
+        comp.append("power:    ").append(m_engine.parameters.power()).append("/").append(other.getEngineParameters().power()).append("\n");
+        comp.append("fuel:     ").append(m_engine.parameters.fuel()).append("/").append(other.getEngineParameters().fuel()).append("\n");
 
         m_setStatus(comp.toString());
 
