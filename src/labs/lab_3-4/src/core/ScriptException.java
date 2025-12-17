@@ -1,6 +1,6 @@
 package core;
 
-public class ScriptException extends Exception {
+public class ScriptException extends RuntimeException {
     public ScriptException() {
         super();
     }
