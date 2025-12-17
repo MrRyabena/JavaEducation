@@ -30,7 +30,7 @@ public final class Smarty extends Character {
             case AUTOMOBILE ->
                     new Automobile(
                             new Transport.Parameters(
-                                   m_automobile_counter > 0 ? "Red-car" : "Green-car", 4, (int) (100 * m_quality), (int) (10 * m_quality)),
+                                   m_automobile_counter > 0 ? "New-car" : "Red-car", 4, (int) (100 * m_quality), (int) (10 * m_quality)),
                             m_automobile_counter++ > 0
                                     ? new ModifiedWaterEngine(
                                             new Engine.Parameters(
