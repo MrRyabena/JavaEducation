@@ -1,7 +1,6 @@
 package characters;
 
 import core.ScriptException;
-
 import transport.BreakException;
 import transport.Transport;
 
@@ -48,8 +47,7 @@ public abstract class Character extends core.Statusable implements Comparable<Ch
         try {
             tr.start();
 
-            for (int i = 0; i < distance; i++)
-                tr.action();
+            for (int i = 0; i < distance; i++) tr.action();
             tr.stop();
             m_setStatus(
                     "successfully drove the "
@@ -80,5 +78,15 @@ public abstract class Character extends core.Statusable implements Comparable<Ch
     @Override
     public String toString() {
         return "[" + name + "]: " + m_status;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof Character && name.equals(((Character) other).name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 }
