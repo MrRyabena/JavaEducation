@@ -25,12 +25,12 @@ public abstract class Character extends core.Statusable implements Comparable<Ch
     }
 
     public void boardTransport(Transport tr) throws core.ScriptException {
-        m_setStatus("set to transport: " + tr.type + " " + tr.getParameters().model());
+        m_setStatus("set to transport: " + tr.getCaption());
         tr.addPassenger(this);
     }
 
     public void leaveTransport(Transport tr) throws core.ScriptException {
-        m_setStatus("leaving transport: " + tr.type + " " + tr.getParameters().model());
+        m_setStatus("leaving transport: " + tr.getCaption());
         tr.removePassenger(this);
     }
 
@@ -48,7 +48,8 @@ public abstract class Character extends core.Statusable implements Comparable<Ch
         try {
             tr.start();
 
-            for (int i = 0; i < distance; i++) tr.action();
+            for (int i = 0; i < distance; i++)
+                tr.action();
             tr.stop();
             m_setStatus(
                     "successfully drove the "
@@ -56,7 +57,7 @@ public abstract class Character extends core.Statusable implements Comparable<Ch
                             + " for the "
                             + distance
                             + " miles");
-
+            setFeeling(Feeling.HAPPY);
         } catch (BreakException e) {
             m_setStatus(
                     "Did not drove the "
