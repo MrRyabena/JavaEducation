@@ -14,12 +14,14 @@ public class WaterEngine extends Engine {
     @Override
     public void start()
     {
+        m_state = true;
         m_setStatus("starts");
     }
 
     @Override
     public void stop()
     {
+        m_state = false;
         m_setStatus("stalls");
     }
 
