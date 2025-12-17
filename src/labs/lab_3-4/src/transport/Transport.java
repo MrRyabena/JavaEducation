@@ -8,8 +8,7 @@ public abstract class Transport extends core.Statusable
 
     public final TransportTypes type;
 
-    public static record Parameters(String model, int capacity, int grace, int resource) {
-    }
+    public static record Parameters(String model, int capacity, int grace, int resource) {}
 
     protected final Parameters m_parameters;
     protected Engine m_engine;
@@ -98,7 +97,8 @@ public abstract class Transport extends core.Statusable
         result.append(". The engine power is ").append(m_engine.parameters.power());
         result.append(" and it works on ").append(m_engine.parameters.fuel());
         result.append(". The mileage is ").append(m_mileage);
-        result.append(". There are ").append(m_passengers.size())
+        result.append(". There are ")
+                .append(m_passengers.size())
                 .append(" passengers on board")
                 .append(m_passengers.size() > 0 ? ": " : ". ");
 
@@ -121,12 +121,36 @@ public abstract class Transport extends core.Statusable
     public int compareTo(Transport other) {
         var o_par = other.getParameters();
         var comp = new StringBuilder("Compare " + getCaption() + " and " + other.getCaption());
-        comp.append("\ncapacity: ").append(m_parameters.capacity()).append("/").append(o_par.capacity()).append("\n");
-        comp.append("grace:    ").append(m_parameters.grace()).append("/").append(o_par.grace()).append("\n");
-        comp.append("resource: ").append(m_parameters.resource()).append("/").append(o_par.resource()).append("\n");
-        comp.append("Engine:   ").append(m_engine.type).append("/").append(other.getEngineType()).append("\n");
-        comp.append("power:    ").append(m_engine.parameters.power()).append("/").append(other.getEngineParameters().power()).append("\n");
-        comp.append("fuel:     ").append(m_engine.parameters.fuel()).append("/").append(other.getEngineParameters().fuel()).append("\n");
+        comp.append("\ncapacity: ")
+                .append(m_parameters.capacity())
+                .append("/")
+                .append(o_par.capacity())
+                .append("\n");
+        comp.append("grace:    ")
+                .append(m_parameters.grace())
+                .append("/")
+                .append(o_par.grace())
+                .append("\n");
+        comp.append("resource: ")
+                .append(m_parameters.resource())
+                .append("/")
+                .append(o_par.resource())
+                .append("\n");
+        comp.append("Engine:   ")
+                .append(m_engine.type)
+                .append("/")
+                .append(other.getEngineType())
+                .append("\n");
+        comp.append("power:    ")
+                .append(m_engine.parameters.power())
+                .append("/")
+                .append(other.getEngineParameters().power())
+                .append("\n");
+        comp.append("fuel:     ")
+                .append(m_engine.parameters.fuel())
+                .append("/")
+                .append(other.getEngineParameters().fuel())
+                .append("\n");
 
         m_setStatus(comp.toString());
 
@@ -136,5 +160,15 @@ public abstract class Transport extends core.Statusable
     @Override
     public String toString() {
         return "[" + type + " \"" + m_parameters.model() + "\"]: " + m_status;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof Transport && compareTo((Transport) other) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return getCaption().hashCode();
     }
 }
