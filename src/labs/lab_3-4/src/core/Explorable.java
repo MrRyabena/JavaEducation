@@ -1,5 +1,5 @@
 package core;
 
-public interface  Explorable {
+public interface Explorable {
     String explore();
 }
