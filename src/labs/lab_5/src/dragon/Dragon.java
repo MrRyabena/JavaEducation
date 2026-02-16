@@ -1,9 +1,9 @@
 package dragon;
 
-import core.Coordinates;
 import core.BadDataException;
+import core.Coordinates;
 
-public class Dragon {
+public class Dragon implements Comparable<Dragon> {
 
     public Dragon(
             String name,
@@ -22,22 +22,39 @@ public class Dragon {
         this.head = head;
     }
 
-    public Dragon(String name, Coordinates coordinates, int age, long weight) throws BadDataException, NullPointerException {
+    public Dragon(String name, Coordinates coordinates, int age, long weight)
+            throws BadDataException, NullPointerException {
         this(name, coordinates, age, weight, null, null);
     }
 
+    public long getId() {
+        return id;
+    }
 
+    public String getName() { 
+        return name;
+    }
+
+    public DragonType getType() {
+        return type;
+    }
+
+    @Override
+    public int compareTo(Dragon other) {
+        return id.compareTo(other.id);
+    }
 
     /**
-     * Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть
+     * Поле не может быть null, Значение поля должно быть больше 0, Значение этого
+     * поля должно быть
      * уникальным, Значение этого поля должно генерироваться автоматически
      */
     final private Long id;
 
     final private String name; // Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; // Поле не может быть null
-    final private java.time.LocalDateTime
-            creationDate; // Поле не может быть null, Значение этого поля должно генерироваться
+    final private java.time.LocalDateTime creationDate; // Поле не может быть null, Значение этого поля должно
+                                                        // генерироваться
     // автоматически
     private int age; // Значение поля должно быть больше 0
     private long weight; // Значение поля должно быть больше 0
