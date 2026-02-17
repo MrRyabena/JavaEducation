@@ -12,7 +12,10 @@ public class Dragon implements Comparable<Dragon> {
             long weight,
             DragonType type,
             DragonHead head) {
-        id = java.util.UUID.randomUUID().getLeastSignificantBits();
+
+        var uuid = java.util.UUID.randomUUID();
+        id = uuid.getMostSignificantBits() ^ uuid.getLeastSignificantBits();
+
         this.name = name;
         this.coordinates = coordinates;
         creationDate = java.time.LocalDateTime.now();
@@ -31,7 +34,7 @@ public class Dragon implements Comparable<Dragon> {
         return id;
     }
 
-    public String getName() { 
+    public String getName() {
         return name;
     }
 
@@ -45,20 +48,20 @@ public class Dragon implements Comparable<Dragon> {
     }
 
     /**
-     * Поле не может быть null, Значение поля должно быть больше 0, Значение этого
-     * поля должно быть
+     * Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть
      * уникальным, Значение этого поля должно генерироваться автоматически
      */
-    final private Long id;
+    private final Long id;
 
-    final private String name; // Поле не может быть null, Строка не может быть пустой
+    private final String name; // Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; // Поле не может быть null
-    final private java.time.LocalDateTime creationDate; // Поле не может быть null, Значение этого поля должно
-                                                        // генерироваться
+    private final java.time.LocalDateTime
+            creationDate; // Поле не может быть null, Значение этого поля должно
+    // генерироваться
     // автоматически
     private int age; // Значение поля должно быть больше 0
     private long weight; // Значение поля должно быть больше 0
     private boolean speaking;
-    final private DragonType type; // Поле может быть null
-    final private DragonHead head;
+    private final DragonType type; // Поле может быть null
+    private final DragonHead head;
 }
